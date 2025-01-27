@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walentynka</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ffe6e6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('https://via.placeholder.com/1500x1000/ffcccc/ffffff?text=Happy+Valentine%27s+Day');
+            background-size: cover;
+            background-position: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #b30000;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .buttons {
+            margin-top: 2rem;
+        }
+
+        button {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            margin: 0.5rem;
+            font-size: 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.3s;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            background-color: #e60000;
+        }
+
+        button:active {
+            transform: scale(1);
+        }
+
+        #result {
+            margin-top: 2rem;
+            font-size: 3rem;
+            display: none;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .heart {
+            font-size: 5rem;
+            color: red;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        .heart.broken {
+            color: #660000;
+            animation: none;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        img {
+            margin-top: 2rem;
+            width: 100px;
+            height: auto;
+            display: none;
+        }
+
+        img.visible {
+            display: block;
+            width: 300px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="question">Zostaniesz moją Walentynką? ❤️</h1>
+    <div id="heart" class="heart">❤️</div>
+    <div class="buttons">
+        <button onclick="showResult('yes')">Tak</button>
+        <button onclick="showResult('no')">Nie</button>
+    </div>
+    <div id="result"></div>
+    <img id="flowerImg" src="mis.jpg" alt="Miś">
+    <img id="noImg" src="buzka.png" alt="Miś" style="display:none; width: 300px; height: auto;">
+
+    <script>
+        function showResult(answer) {
+            const resultDiv = document.getElementById('result');
+            const flowerImg = document.getElementById('flowerImg');
+            const noImg = document.getElementById('noImg');
+            const question = document.getElementById('question');
+            const heart = document.getElementById('heart');
+
+            question.style.display = 'none';
+
+            if (answer === 'yes') {
+                resultDiv.innerHTML = 'Dzięki! 🌹🌷🌼';
+                resultDiv.style.color = 'green';
+                flowerImg.classList.add('visible');
+                noImg.style.display = 'none';
+            } else {
+                resultDiv.innerHTML = 'Lepiej się zastanów 😅';
+                resultDiv.style.color = 'red';
+                flowerImg.classList.remove('visible');
+                noImg.style.display = 'block';
+                heart.classList.add('broken');
+                heart.innerHTML = '💔';
+            }
+
+            resultDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
